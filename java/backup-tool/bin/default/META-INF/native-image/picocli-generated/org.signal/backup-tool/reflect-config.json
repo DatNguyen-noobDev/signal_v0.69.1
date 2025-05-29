@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "BackupTool",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "aesKey" },
+      { "name" : "hmacKey" },
+      { "name" : "input" }
+    ]
+  }
+]
