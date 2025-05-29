@@ -41,8 +41,12 @@ jobs:
       - name: Verify Rust version
         run: rustc --version
 
-      - name: Install Rust target for Android
-        run: rustup target add aarch64-linux-android
+      - name: Install all Rust targets for Android
+        run: |
+          rustup target add aarch64-linux-android
+          rustup target add armv7-linux-androideabi
+          rustup target add x86_64-linux-android
+          rustup target add i686-linux-android
 
       - name: Install required system packages
         run: |
