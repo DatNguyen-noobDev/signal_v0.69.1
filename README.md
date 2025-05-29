@@ -3,18 +3,18 @@
 libsignal contains platform-agnostic APIs used by the official Signal clients and servers, exposed
 as a Java, Swift, or TypeScript library. The underlying implementations are written in Rust:
 
-- libsignal-protocol: Implements the Signal protocol, including the [Double Ratchet algorithm][]. A
-  replacement for [libsignal-protocol-java][] and [libsignal-metadata-java][].
-- signal-crypto: Cryptographic primitives such as AES-GCM. We use [RustCrypto][]'s where we can
-  but sometimes have differing needs.
-- device-transfer: Support logic for Signal's device-to-device transfer feature.
-- attest: Functionality for remote attestation of [SGX enclaves][] and server-side [HSMs][].
-- zkgroup: Functionality for [zero-knowledge groups][] and related features available in Signal.
-- zkcredential: An abstraction for the sort of zero-knowledge credentials used by zkgroup, based on the paper "[The Signal Private Group System][]" by Chase, Perrin, and Zaverucha.
-- poksho: Utilities for implementing zero-knowledge proofs (such as those used by zkgroup); stands for "proof-of-knowledge, stateful-hash-object".
-- account-keys: Functionality for consistently using [PINs][] as passwords in Signal's Secure Value Recovery system, as well as other account-wide key operations.
-- usernames: Functionality for username generation, hashing, and proofs.
-- media: Utilities for manipulating media.
+-   libsignal-protocol: Implements the Signal protocol, including the [Double Ratchet algorithm][]. A
+    replacement for [libsignal-protocol-java][] and [libsignal-metadata-java][].
+-   signal-crypto: Cryptographic primitives such as AES-GCM. We use [RustCrypto][]'s where we can
+    but sometimes have differing needs.
+-   device-transfer: Support logic for Signal's device-to-device transfer feature.
+-   attest: Functionality for remote attestation of [SGX enclaves][] and server-side [HSMs][].
+-   zkgroup: Functionality for [zero-knowledge groups][] and related features available in Signal.
+-   zkcredential: An abstraction for the sort of zero-knowledge credentials used by zkgroup, based on the paper "[The Signal Private Group System][]" by Chase, Perrin, and Zaverucha.
+-   poksho: Utilities for implementing zero-knowledge proofs (such as those used by zkgroup); stands for "proof-of-knowledge, stateful-hash-object".
+-   account-keys: Functionality for consistently using [PINs][] as passwords in Signal's Secure Value Recovery system, as well as other account-wide key operations.
+-   usernames: Functionality for username generation, hashing, and proofs.
+-   media: Utilities for manipulating media.
 
 This repository is used by the Signal client apps ([Android][], [iOS][], and [Desktop][]) as well as
 server-side. Use outside of Signal is unsupported. In particular, the products of this repository
@@ -37,7 +37,6 @@ increases to the minimum supported tools versions.
 [Android]: https://github.com/signalapp/Signal-Android
 [iOS]: https://github.com/signalapp/Signal-iOS
 [Desktop]: https://github.com/signalapp/Signal-Desktop
-
 
 # Building
 
@@ -79,16 +78,16 @@ $ cargo test
 
 ### Additional Rust Tools
 
-The basic tools above should get you set up for most libsignal Rust development. 
+The basic tools above should get you set up for most libsignal Rust development.
 
-Eventually, you may find that you need some additional Rust tools like `cbindgen` to modify the bridges to the 
-client libraries or `taplo` for code formatting. 
+Eventually, you may find that you need some additional Rust tools like `cbindgen` to modify the bridges to the
+client libraries or `taplo` for code formatting.
 
 You should always install any Rust tools you need that may affect the build from cargo rather than from your system
 package manager (e.g. `apt` or `brew`). Package managers sometimes contain outdated versions of these tools that can break
 the build with incompatibility issues (especially cbindgen).
 
-To install the main Rust extra dependencies matching the versions we use, you can run the following commands: 
+To install the main Rust extra dependencies matching the versions we use, you can run the following commands:
 
 ```shell
 $ cargo +stable install cbindgen cargo-fuzz
@@ -101,9 +100,9 @@ $ cargo +stable install --version "$(cat ../.taplo-cli-version)" --locked taplo-
 To build for Android you must install several additional packages including a JDK,
 the Android NDK/SDK, and add the Android targets to the Rust compiler, using
 
-```rustup target add armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android```
+`rustup target add armv7-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android`
 
-To build the Java/Android ``jar`` and ``aar``, and run the tests:
+To build the Java/Android `jar` and `aar`, and run the tests:
 
 ```shell
 $ cd java
@@ -122,7 +121,7 @@ $ make
 ```
 
 When exposing new APIs to Java, you will need to run `rust/bridge/jni/bin/gen_java_decl.py` in
-addition to rebuilding. This requires installing the `cbindgen` Rust tool, as detailed above. 
+addition to rebuilding. This requires installing the `cbindgen` Rust tool, as detailed above.
 
 ### Maven Central
 
@@ -132,7 +131,7 @@ org.signal:libsignal-android. libsignal-client and libsignal-server contain nati
 Debian-flavored x86_64 Linux as well as Windows (x86_64) and macOS (x86_64 and arm64).
 libsignal-android contains native libraries for armeabi-v7a, arm64-v8a, x86, and x86_64 Android.
 
-When building for Android you need *both* libsignal-android and libsignal-client, but the Windows
+When building for Android you need _both_ libsignal-android and libsignal-client, but the Windows
 and macOS libraries in libsignal-client won't automatically be excluded from your final app. You can
 explicitly exclude them using `packagingOptions`:
 
@@ -151,11 +150,9 @@ android {
 You can additionally exclude `libsignal_jni_testing.so` if you do not plan to use any of the APIs
 intended for client testing.
 
-
 ## Swift
 
-To learn about the Swift build process see [``swift/README.md``](swift/)
-
+To learn about the Swift build process see [`swift/README.md`](swift/)
 
 ## Node
 
@@ -187,7 +184,6 @@ libraries for Windows, macOS, and Debian-flavored Linux. Both x64 and arm64 buil
 all three platforms, but the arm64 builds for Windows and Linux are considered experimental, since
 there are no official builds of Signal for those architectures.
 
-
 # Contributions
 
 Signal does accept external contributions to this project. However unless the change is
@@ -215,19 +211,20 @@ You can run more extensive tests as well as linters and clippy by running:
 just check-pre-commit
 ```
 
-When making a PR that adjusts dependencies, you'll need to regenerate our acknowledgments files. See [``acknowledgments/README.md``](acknowledgments/).
+When making a PR that adjusts dependencies, you'll need to regenerate our acknowledgments files. See [`acknowledgments/README.md`](acknowledgments/).
 
 # Legal things
+
 ## Cryptography Notice
 
 This distribution includes cryptographic software. The country in which you currently reside may have restrictions on
-the import, possession, use, and/or re-export to another country, of encryption software.  BEFORE using any encryption
+the import, possession, use, and/or re-export to another country, of encryption software. BEFORE using any encryption
 software, please check your country's laws, regulations and policies concerning the import, possession, or use, and
-re-export of encryption software, to see if this is permitted.  See <http://www.wassenaar.org/> for more information.
+re-export of encryption software, to see if this is permitted. See <http://www.wassenaar.org/> for more information.
 
 The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS), has classified this software as
 Export Commodity Control Number (ECCN) 5D002.C.1, which includes information security software using or performing
-cryptographic functions with asymmetric algorithms.  The form and manner of this distribution makes it eligible for
+cryptographic functions with asymmetric algorithms. The form and manner of this distribution makes it eligible for
 export under the License Exception ENC Technology Software Unrestricted (TSU) exception (see the BIS Export
 Administration Regulations, Section 740.13) for both object code and source code.
 
